@@ -19,3 +19,16 @@ for (let index = 0; index < 50; index++) {
         color: arrayColors[Math.floor(Math.random() * 5)]
     });
 }
+
+// Function to draw all dots
+const drawDots = () => {
+    dots.forEach(dot => {
+        ctx.fillStyle = dot.color;
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2); // Corrected 'math' to 'Math'
+        ctx.fill();
+    });
+};
+
+// Initial rendering of dots
+drawDots();
