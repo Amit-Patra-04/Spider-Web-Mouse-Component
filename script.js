@@ -32,3 +32,26 @@ const drawDots = () => {
 
 // Initial rendering of dots
 drawDots();
+
+// Mousemove event to connect dots to the cursor
+banner.addEventListener('mousemove', (event) => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Corrected 'clearrect' to 'clearRect'
+    drawDots();
+
+    let mouse = {
+        x: event.clientX - banner.getBoundingClientRect().left,
+        y: event.clientY - banner.getBoundingClientRect().top
+    };
+
+    dots.forEach(dot => {
+        let distance = Math.sqrt((mouse.x - dot.x) ** 2 + (mouse.y - dot.y) ** 2);
+        if (distance < 200) {
+            ctx.strokeStyle = dot.color;
+            ctx.lineWidth = 1; 
+            ctx.beginPath();
+            ctx.moveTo(dot.x, dot.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+        }
+    });
+});
