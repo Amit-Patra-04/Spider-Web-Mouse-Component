@@ -55,3 +55,9 @@ banner.addEventListener('mousemove', (event) => {
         }
     });
 });
+
+// Mouseout event to clear the lines
+banner.addEventListener('mouseout', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Corrected 'clearrect' to 'clearRect'
+    drawDots();
+});
